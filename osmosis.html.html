@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Osmosis & Diffusion Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 450px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    select, button {
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+    .cell {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: #87CEEB;
+      margin: 30px auto;
+      transition: all 0.6s ease;
+    }
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Osmosis & Diffusion Simulator</h1>
+    <p>Select the solution surrounding the cell:</p>
+
+    <select id="solution">
+      <option value="choose">-- Choose one --</option>
+      <option value="hypotonic">Hypotonic</option>
+      <option value="isotonic">Isotonic</option>
+      <option value="hypertonic">Hypertonic</option>
+    </select>
+
+    <br>
+    <button onclick="simulate()">Simulate</button>
+
+    <div class="cell" id="cell"></div>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function simulate() {
+      const solution = document.getElementById("solution").value;
+      const cell = document.getElementById("cell");
+      const result = document.getElementById("result");
+
+      if (solution === "hypotonic") {
+        cell.style.transform = "scale(1.3)";
+        result.innerHTML = "Hypotonic Solution: Water enters the cell → The cell swells and may burst (lysis).";
+      }
+      else if (solution === "isotonic") {
+        cell.style.transform = "scale(1)";
+        result.innerHTML = "Isotonic Solution: Water moves in and out evenly → The cell stays the same size.";
+      }
+      else if (solution === "hypertonic") {
+        cell.style.transform = "scale(0.7)";
+        result.innerHTML = "Hypertonic Solution: Water leaves the cell → The cell shrinks (crenation).";
+      }
+      else {
+        result.innerHTML = "Please select a solution.";
+      }
+    }
+  </script>
+
+</body>
+</html>
